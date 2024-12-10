@@ -1,9 +1,9 @@
 import gradio as gr
 from theme_classifier import ThemeClassifier
 from character_network import NamedEntityRecognizer, CharacterNetworkGenerator
-import os
-from dotenv import load_dotenv
-load_dotenv()
+# import os
+# from dotenv import load_dotenv
+# load_dotenv()
 
 def get_themes(theme_list_str,subtitles_path,save_path):
     theme_list = theme_list_str.split(',')
@@ -55,13 +55,13 @@ def main():
         # Theme Classification Section
         with gr.Row():
             with gr.Column():
-                gr.HTML("<h1>Theme Classification (Zero Shot Claasifiers)</h1>")
+                gr.HTML("<h1>Theme Classification (Zero Shot Classifier)</h1>")
                 with gr.Row():
                     with gr.Column():
                         plot = gr.BarPlot()
                     with gr.Column():
                         theme_list = gr.Textbox(label="Themes")
-                        subtitles_path = gr.Textbox(label="Subtitles or script Path")
+                        subtitles_path = gr.Textbox(label="Subtitles Dataset")
                         save_path = gr.Textbox(label="Save Path")
                         get_themes_button =gr.Button("Get Themes")
                         get_themes_button.click(get_themes, inputs=[theme_list,subtitles_path,save_path], outputs=[plot])
@@ -74,7 +74,7 @@ def main():
                     with gr.Column():
                         network_html = gr.HTML()
                     with gr.Column():
-                        subtitles_path = gr.Textbox(label="Subtutles or Script Path")
+                        subtitles_path = gr.Textbox(label="Subtitles Dataset")
                         ner_path = gr.Textbox(label="NERs save path")
                         get_network_graph_button = gr.Button("Get Character Network")
                         get_network_graph_button.click(get_character_network, inputs=[subtitles_path,ner_path], outputs=[network_html])
